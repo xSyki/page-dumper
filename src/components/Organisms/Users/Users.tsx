@@ -8,7 +8,7 @@ import {
     useState,
 } from 'react'
 import { toast } from 'react-hot-toast'
-import { Company, User } from '@prisma/client'
+import { User } from '@prisma/client'
 import { useTranslations } from 'next-intl'
 import { deleteUser } from 'src/api/users'
 
@@ -18,23 +18,21 @@ import Table from '@/components/Molecules/Table/Table'
 
 import TableHeader from './TableHeader/TableHeader'
 
-export type UserWithCompany = User & { company: Company }
-
 export const UsersContext = createContext<{
-    users: UserWithCompany[]
-    setUsers?: Dispatch<SetStateAction<UserWithCompany[]>>
+    users: User[]
+    setUsers?: Dispatch<SetStateAction<User[]>>
     checkedUsers: number[]
     setCheckedUsers?: Dispatch<SetStateAction<number[]>>
 }>({ users: [], checkedUsers: [] })
 
 interface UsersProps {
-    users: UserWithCompany[]
+    users: User[]
 }
 
 export default function Users(props: UsersProps) {
     const t = useTranslations('AdminPage')
 
-    const [users, setUsers] = useState<UserWithCompany[]>(props.users)
+    const [users, setUsers] = useState<User[]>(props.users)
     const [checkedUsers, setCheckedUsers] = useState<number[]>([])
 
     useEffect(() => {
@@ -76,9 +74,6 @@ export default function Users(props: UsersProps) {
                             orderBy: { name: 'role' },
                         },
                         {
-                            label: t('company'),
-                        },
-                        {
                             label: t('actions'),
                         },
                     ]}
@@ -92,9 +87,6 @@ export default function Users(props: UsersProps) {
                             },
                             {
                                 content: user.role,
-                            },
-                            {
-                                content: user.company?.name,
                             },
                             {
                                 content: (

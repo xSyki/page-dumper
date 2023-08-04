@@ -9,8 +9,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
@@ -20,57 +18,4 @@ model User {
   email     String  @unique
   password  String
   role      String
-  offers    Offer[]
-  emailTemplates EmailTemplate[]
-  emailProviders EmailProvider[]
-  company  Company @relation(fields: [companyId], references: [id])
-  companyId Int
-}
-
-model Offer {
-  id        Int     @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String  
-  name      String
-  sent      Boolean @default(false)
-  ignored   Boolean @default(false)
-  user      User @relation(fields: [userId], references: [id])
-  userId    Int
-}
-
-model EmailTemplate {
-  id        Int     @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  subject   String
-  html      String
-  text      String
-  user      User @relation(fields: [userId], references: [id])
-  userId    Int
-}
-
-model EmailProvider {
-  id        Int     @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  host      String
-  port      Int
-  secure    Boolean
-  emailUser String
-  emailPass String
-  from      String
-  user      User @relation(fields: [userId], references: [id])
-  userId    Int
-}
-
-model Company {
-  id        Int     @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  users     User[]
-  name     String
-  nip      String
-  city     String
-  street   String
-  postalCode String
-  country  String
-  houseNumber String
-  email    String
 }

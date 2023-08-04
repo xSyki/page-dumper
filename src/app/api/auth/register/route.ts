@@ -1,11 +1,9 @@
 import { User } from '@prisma/client'
 import { hash } from 'bcrypt'
 import { NextRequest, NextResponse } from 'next/server'
-import emailProvider from 'src/__mocks__/emailProvider'
-import emailTemplate from 'src/__mocks__/emailTemplate'
 import { object, string } from 'yup'
 
-import { IMiddlewares, withProtect, withValidation } from '@/lib/middlewares'
+import { IMiddlewares, withValidation } from '@/lib/middlewares'
 
 import prisma from '../../../../lib/prisma'
 
@@ -32,31 +30,14 @@ async function POST(
             name,
             email,
             password: await hash(password, 10),
-            role: 'MANAGER',
-            emailTemplates: {
-                create: [emailTemplate],
-            },
-            emailProviders: {
-                create: [
-                    {
-                        ...emailProvider,
-                        emailUser: email,
-                        from: `"${name}" <${email}>`,
-                    },
-                ],
-            },
-            company: {
-                connect: {
-                    id: token.companyId,
-                },
-            },
+            role: 'ADMIN',
         },
     })
 
     return NextResponse.json(user)
 }
 
-const postHandler = withValidation(withProtect(POST, ['ADMIN']), {
+const postHandler = withValidation(POST, {
     bodySchema: object().shape({
         name: string().required(),
         email: string().email().required(),

@@ -9,19 +9,19 @@ export interface IChart {
         | 'line'
         | 'area'
         | 'bar'
-        | 'histogram'
         | 'pie'
         | 'donut'
         | 'radialBar'
         | 'scatter'
         | 'bubble'
         | 'heatmap'
-        | 'treemap'
-        | 'boxPlot'
         | 'candlestick'
+        | 'boxPlot'
         | 'radar'
         | 'polarArea'
         | 'rangeBar'
+        | 'rangeArea'
+        | 'treemap'
     series?: ApexOptions['series']
     width?: string | number
     height?: string | number

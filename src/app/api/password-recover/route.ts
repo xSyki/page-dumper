@@ -40,7 +40,6 @@ async function POST(
                         userId: user.id,
                         email,
                         name: user.name,
-                        companyId: user.companyId,
                     },
                     secret: process.env.NEXTAUTH_SECRET as string,
                 }

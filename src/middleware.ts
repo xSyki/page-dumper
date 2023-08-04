@@ -11,9 +11,7 @@ const publicPages = [
     '/password-recover',
 ]
 
-const adminPages = ['/admin', '/admin/users', '/admin/companies']
-
-const managerPages = ['/company', '/company/users']
+const adminPages = ['/admin', '/admin/users']
 
 const intlMiddleware = createIntlMiddleware({
     locales,
@@ -27,13 +25,6 @@ const authMiddleware = withAuth((req) => intlMiddleware(req), {
 
             if (
                 adminPages.includes(req.nextUrl.pathname) &&
-                token?.role !== 'ADMIN'
-            )
-                return false
-
-            if (
-                managerPages.includes(req.nextUrl.pathname) &&
-                token?.role !== 'MANAGER' &&
                 token?.role !== 'ADMIN'
             )
                 return false

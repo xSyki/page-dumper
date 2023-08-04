@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { User } from '@prisma/client'
 import { Form, Formik } from 'formik'
 import { useTranslations } from 'next-intl'
 import { postRegister } from 'src/api/user'
@@ -9,8 +10,6 @@ import FormikInput from '@/components/Atoms/FormikInput/FormikInput'
 import Modal from '@/components/Atoms/Modal/Modal'
 import SubmitButton from '@/components/Atoms/SubmitButton/SubmitButton'
 
-import { UserWithCompany } from '../../../Users'
-
 interface IFormValues {
     name: string
     email: string
@@ -18,7 +17,7 @@ interface IFormValues {
 }
 
 interface IAddUserProps {
-    addUser: (user: UserWithCompany) => void
+    addUser: (user: User) => void
 }
 
 export default function AddUser(props: IAddUserProps) {

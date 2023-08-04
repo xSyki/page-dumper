@@ -18,7 +18,6 @@ export default function AdminLayout(props: IAdminLayoutProps) {
                 items={[
                     { label: t('dashboard'), url: '/admin' },
                     { label: t('users'), url: '/admin/users' },
-                    { label: t('companies'), url: '/admin/companies' },
                 ]}
             />
             {children}

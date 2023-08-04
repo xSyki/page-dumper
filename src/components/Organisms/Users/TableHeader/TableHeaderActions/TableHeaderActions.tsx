@@ -4,7 +4,7 @@ import { useContext, useRef, useState } from 'react'
 import useOnClickOutside from 'src/hooks/useOnClickOutside'
 import { c } from 'src/utils'
 
-import { UsersContext, UserWithCompany } from '../../Users'
+import { UsersContext } from '../../Users'
 
 import AddUser from './AddUser/AddUser'
 
@@ -52,9 +52,7 @@ export default function TableHeaderActions() {
                 )}
             >
                 <AddUser
-                    addUser={(user: UserWithCompany) =>
-                        setUsers?.((users) => [user, ...users])
-                    }
+                    addUser={(user) => setUsers?.((users) => [user, ...users])}
                 />
             </div>
         </div>

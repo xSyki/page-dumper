@@ -20,9 +20,6 @@ export default async function UsersPage(props: IPageProps) {
     const searchParams = getSearchParams(props.searchParams)
 
     const users = await prisma.user.findMany({
-        include: {
-            company: true,
-        },
         ...getDatabaseOrderByQuery(
             ['name', 'email', 'role'],
             searchParams?.users,

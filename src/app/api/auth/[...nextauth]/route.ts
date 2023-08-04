@@ -41,14 +41,12 @@ export const authOptions: NextAuthOptions = {
             if (user) {
                 token.userId = user.id as number
                 token.role = user.role
-                token.companyId = user.companyId
             }
             return token
         },
         session({ session, token }) {
             session.user.id = token.userId
             session.user.role = token.role
-            session.user.companyId = token.companyId
 
             return session
         },

@@ -7,9 +7,7 @@ import Link from 'next-intl/link'
 import { c } from 'src/utils'
 
 import AlbumsIcon from '@/assets/icons/albums.svg'
-import BusinessIcon from '@/assets/icons/business.svg'
 import AdminIcon from '@/assets/icons/laptop.svg'
-import EmailIcon from '@/assets/icons/mail.svg'
 import ProfileIcon from '@/assets/icons/person.svg'
 
 interface IAsideProps {
@@ -34,23 +32,7 @@ export default function Aside(props: IAsideProps) {
             icon: (
                 <AlbumsIcon className="h-6 w-6 flex-shrink-0 fill-gray-400 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
             ),
-            roles: ['EMPLOYEE', 'MANAGER', 'ADMIN'],
-        },
-        {
-            label: t('email'),
-            href: '/email',
-            icon: (
-                <EmailIcon className="h-6 w-6 flex-shrink-0 fill-gray-400 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
-            ),
-            roles: ['EMPLOYEE', 'MANAGER', 'ADMIN'],
-        },
-        {
-            label: t('company'),
-            href: '/company',
-            icon: (
-                <BusinessIcon className="h-6 w-6 flex-shrink-0 fill-gray-400 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
-            ),
-            roles: ['MANAGER', 'ADMIN'],
+            roles: ['EMPLOYEE', 'ADMIN'],
         },
         {
             label: t('admin'),
@@ -66,7 +48,7 @@ export default function Aside(props: IAsideProps) {
             icon: (
                 <ProfileIcon className="h-6 w-6 flex-shrink-0 fill-gray-400 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
             ),
-            roles: ['EMPLOYEE', 'MANAGER', 'ADMIN'],
+            roles: ['EMPLOYEE', 'ADMIN'],
         },
     ]
 
