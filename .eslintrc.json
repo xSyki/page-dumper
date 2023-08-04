@@ -1,0 +1,27 @@
+{
+    "plugins": ["@typescript-eslint", "simple-import-sort"],
+    "extends": [
+        "next/core-web-vitals",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "rules": {
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "react-hooks/exhaustive-deps": "off",
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    ["^react", "^@?\\w"],
+                    ["^(@|components)(/.*|$)"],
+                    ["^\\u0000"],
+                    ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+                    ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                    ["^.+\\.?(styles)$", "^.+\\.?(css)$", "^.+\\.?(scss)$"]
+                ]
+            }
+        ],
+        "simple-import-sort/exports": "error"
+    }
+}
