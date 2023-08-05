@@ -1,6 +1,7 @@
 {
     "Index": {
-        "offers": "Offers",
+        "projects": "Projects",
+        "project": "Project",
         "email_providers": "Email Providers",
         "email_templates": "Email Templates",
         "profile": "Profile",
@@ -39,7 +40,7 @@
         "email_sent": "Email sent",
         "error_occurred": "An error occurred, please try again or contact your administrator",
         "add_manual": "Add manually",
-        "add_offer": "Add offer",
+        "add_project": "Add project",
         "add": "Add",
         "required_field": "This field is required",
         "invalid_email": "Invalid email",
@@ -63,7 +64,9 @@
         "of": "of",
         "entries": "entries",
         "prev": "Prev",
-        "next": "Next"
+        "next": "Next",
+        "url": "URL",
+        "domain": "Domain"
     },
     "NotFoundPage": {
         "not_found": "Page not found"
@@ -93,29 +96,5 @@
         "nip": "NIP",
         "address": "Address",
         "company": "Company"
-    },
-    "EmailPage": {
-        "templates": "Email Templates",
-        "providers": "Email Providers"
-    },
-    "CompanyPage": {
-        "company": "Company",
-        "users": "Users",
-        "nip": "NIP",
-        "name": "Name",
-        "email": "Email",
-        "city": "City",
-        "street": "Street",
-        "postal_code": "Postal Code",
-        "country": "Country",
-        "house_number": "House Number",
-        "save": "Save",
-        "saved": "Saved",
-        "error_occurred": "Error occurred",
-        "required_field": "This field is required",
-        "invalid_email": "Invalid email",
-        "min_length_2": "Minimum length is 2",
-        "min_length_8": "Minimum length is 8",
-        "max_length_50": "Max length is 50"
     }
 }

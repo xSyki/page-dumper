@@ -18,4 +18,25 @@ model User {
   email     String  @unique
   password  String
   role      String
+  projects  Project[]
+}
+
+model Project {
+  id        Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  owner     User    @relation(fields: [ownerId], references: [id])
+  ownerId   Int
+  domain    String
+  pages     Page[]
+}
+
+model Page {
+  id        Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+  content   String?
+  contentUpdatedAt DateTime?
+  url       String
 }

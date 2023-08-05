@@ -1,6 +1,7 @@
 {
     "Index": {
-        "offers": "Oferty",
+        "projects": "Projekty",
+        "project": "Projekt",
         "email_providers": "Dostawcy poczty",
         "email_templates": "Szablony e-mail",
         "profile": "Profil",
@@ -39,7 +40,7 @@
         "email_sent": "Email został wysłany",
         "error_occurred": "Wystąpił błąd, spróbuj ponownie lub skontaktuj się z administratorem",
         "add_manual": "Dodaj ręcznie",
-        "add_offer": "Dodaj ofertę",
+        "add_project": "Dodaj projekt",
         "add": "Dodaj",
         "required_field": "To pole jest wymagane",
         "invalid_email": "Nie poprawny adres e-mail",
@@ -63,7 +64,9 @@
         "of": "z",
         "entries": "wpisów",
         "prev": "Poprzedni",
-        "next": "Następny"
+        "next": "Następny",
+        "url": "URL",
+        "domain": "Domena"
     },
     "NotFoundPage": {
         "not_found": "Strony nie znaleziono"
@@ -93,29 +96,5 @@
         "nip": "NIP",
         "address": "Adres",
         "company": "Firma"
-    },
-    "EmailPage": {
-        "templates": "Szablony e-mail",
-        "providers": "Dostawcy poczty"
-    },
-    "CompanyPage": {
-        "company": "Firma",
-        "users": "Użytkownicy",
-        "nip": "NIP",
-        "name": "Nazwa",
-        "email": "E-mail",
-        "city": "Miasto",
-        "street": "Ulica",
-        "postal_code": "Kod pocztowy",
-        "country": "Kraj",
-        "house_number": "Numer domu",
-        "save": "Zapisz",
-        "saved": "Zapisano",
-        "error_occurred": "Wystąpił błąd",
-        "required_field": "To pole jest wymagane",
-        "invalid_email": "Nie poprawny adres e-mail",
-        "min_length_2": "Minimalna długość to 2",
-        "min_length_8": "Minimalna długość to 8",
-        "max_length_50": "Maksymalna długość to 50"
     }
 }
