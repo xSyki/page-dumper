@@ -1,8 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
+import { toast } from 'react-hot-toast'
 import { Project } from '@prisma/client'
 import { useTranslations } from 'next-intl'
 import { deleteProject } from 'src/api/project'
+import useProjects from 'src/stores/projects'
 
 import DeleteIcon from '@/assets/icons/trash.svg'
 import IconButton from '@/components/Atoms/IconButton/IconButton'
@@ -15,15 +18,26 @@ interface IProjectsProps {
 }
 
 export default function Projects(props: IProjectsProps) {
-    const { projects } = props
-
     const t = useTranslations('Index')
+
+    const [{ projects }, { setProjects, deleteProject: deleteProjectState }] =
+        useProjects()
 
     const handleDeleteProject = async (projectId: number) => {
         await deleteProject(projectId)
+            .then((id) => {
+                deleteProjectState(id)
+            })
+            .catch(() => {
+                toast.error(t('error'))
+            })
     }
 
-    if (!projects.length) {
+    useEffect(() => {
+        setProjects(props.projects)
+    }, [props.projects])
+
+    if (!props.projects.length) {
         return (
             <div>
                 <AddProject />

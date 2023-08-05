@@ -40,11 +40,11 @@ async function POST(
     return NextResponse.json(project, { status: 200 })
 }
 
-const putHandler = withValidation(withProtect(POST), {
+const postHandler = withValidation(withProtect(POST), {
     bodySchema: object().shape({
         name: string().required(),
         url: string().url().required(),
     }),
 })
 
-export { putHandler as PUT }
+export { postHandler as POST }

@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { Project } from '@prisma/client'
 import { Form, Formik } from 'formik'
 import { useTranslations } from 'next-intl'
 import { postProject } from 'src/api/project'
+import useProjects from 'src/stores/projects'
 import { object, string } from 'yup'
 
 import FormikInput from '@/components/Atoms/FormikInput/FormikInput'
@@ -18,6 +20,9 @@ interface IFormValues {
 
 export default function AddProject() {
     const t = useTranslations('Index')
+
+    const [, { addProject }] = useProjects()
+
     const [isOpen, setIsOpen] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -37,6 +42,9 @@ export default function AddProject() {
         console.log('test')
 
         await postProject(values)
+            .then((project: Project) => {
+                addProject(project)
+            })
             .catch(() => {
                 toast.error(t('error'))
             })
