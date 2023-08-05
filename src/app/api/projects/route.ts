@@ -20,7 +20,7 @@ async function POST(
         return NextResponse.json({ error: 'Invalid URL' }, { status: 400 })
     }
 
-    const domain = new URL(body.url).hostname
+    const domain = new URL(body.url).origin
 
     const project = await prisma.project.create({
         data: {

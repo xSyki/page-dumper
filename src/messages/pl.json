@@ -66,7 +66,8 @@
         "prev": "Poprzedni",
         "next": "Następny",
         "url": "URL",
-        "domain": "Domena"
+        "domain": "Domena",
+        "dashboard": "Panel"
     },
     "NotFoundPage": {
         "not_found": "Strony nie znaleziono"

@@ -2,7 +2,10 @@
 
 import { Project } from '@prisma/client'
 import { useTranslations } from 'next-intl'
+import { deleteProject } from 'src/api/project'
 
+import DeleteIcon from '@/assets/icons/trash.svg'
+import IconButton from '@/components/Atoms/IconButton/IconButton'
 import Table from '@/components/Molecules/Table/Table'
 
 import AddProject from './AddProject/AddProject'
@@ -14,7 +17,11 @@ interface IProjectsProps {
 export default function Projects(props: IProjectsProps) {
     const { projects } = props
 
-    const t = useTranslations()
+    const t = useTranslations('Index')
+
+    const handleDeleteProject = async (projectId: number) => {
+        await deleteProject(projectId)
+    }
 
     if (!projects.length) {
         return (
@@ -32,11 +39,12 @@ export default function Projects(props: IProjectsProps) {
                 header={[
                     {
                         label: t('name'),
-                        orderBy: { name: 'name' },
                     },
                     {
                         label: t('domain'),
-                        orderBy: { name: 'domain' },
+                    },
+                    {
+                        label: t('actions'),
                     },
                 ]}
                 rows={projects.map((project) => ({
@@ -46,6 +54,18 @@ export default function Projects(props: IProjectsProps) {
                         },
                         {
                             content: project.domain,
+                        },
+                        {
+                            content: (
+                                <div className="flex">
+                                    <IconButton
+                                        onClick={() =>
+                                            handleDeleteProject(project.id)
+                                        }
+                                        Icon={DeleteIcon}
+                                    />
+                                </div>
+                            ),
                         },
                     ],
                 }))}

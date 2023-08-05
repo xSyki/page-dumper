@@ -13,7 +13,7 @@ export function withProtect<T>(
         res: NextResponse,
         middlewares: IMiddlewares<T>
     ) => Promise<NextResponse>,
-    roles: string[] = ['ADMIN', 'EMPLOYEE']
+    roles: string[] = ['ADMIN', 'USER']
 ) {
     return async (
         req: NextRequest,
