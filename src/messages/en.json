@@ -97,5 +97,9 @@
         "nip": "NIP",
         "address": "Address",
         "company": "Company"
+    },
+    "Project": {
+        "import_sitemap": "Import sitemap",
+        "url": "URL"
     }
 }

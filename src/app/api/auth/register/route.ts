@@ -10,15 +10,11 @@ import prisma from '../../../../lib/prisma'
 async function POST(
     req: NextRequest,
     res: NextResponse,
-    { body: { name, email, password }, token }: IMiddlewares<User>
+    { body: { name, email, password } }: IMiddlewares<User>
 ) {
-    const exists = await prisma.user.findUnique({
-        where: {
-            email,
-        },
-    })
+    const users = await prisma.user.findMany()
 
-    if (exists) {
+    if (users.length) {
         return NextResponse.json(
             { error: 'User already exists' },
             { status: 400 }

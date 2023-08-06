@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import useGetParams from 'src/hooks/useGetParams'
+import { c } from 'src/utils'
 
 import PaginationButtons from '@/components/Atoms/PaginationButtons/PaginationButtons'
 
@@ -15,18 +16,29 @@ export interface IHeaderItem {
     }
 }
 
-interface ITableProps {
+interface IClickableRow<T> {
+    onRowClick: (row: T) => void
+    rowData: T
+    cells: { content: ReactNode }[]
+    className?: string
+}
+
+interface ITableProps<T> {
     name?: string
     header: IHeaderItem[]
-    rows: {
-        cells: { content: ReactNode }[]
-    }[]
+    rows: (
+        | {
+              cells: { content: ReactNode }[]
+              className?: string
+          }
+        | IClickableRow<T>
+    )[]
     pagination?: boolean
 }
 
 const maxRowsOptions = [10, 25, 50, 100]
 
-export default function Table(props: ITableProps) {
+export default function Table<T>(props: ITableProps<T>) {
     const { name, header, pagination } = props
 
     const t = useTranslations('Index')
@@ -74,8 +86,15 @@ export default function Table(props: ITableProps) {
                     <tbody>
                         {rows.map((row, index) => (
                             <tr
-                                className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+                                className={c(
+                                    'border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600',
+                                    row.className
+                                )}
                                 key={index}
+                                onClick={() => {
+                                    if (!('onRowClick' in row)) return
+                                    row.onRowClick?.(row.rowData)
+                                }}
                             >
                                 {row.cells.map((cell, index) => (
                                     <td key={index} className="px-3 py-2">

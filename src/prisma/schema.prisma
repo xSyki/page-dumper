@@ -37,5 +37,6 @@ model Page {
   projectId Int
   content   String?
   contentUpdatedAt DateTime?
-  url       String
+  url       String @unique
+  status    String?
 }

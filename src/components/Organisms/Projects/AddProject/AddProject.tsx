@@ -39,8 +39,6 @@ export default function AddProject() {
     const handleSubmit = async (values: IFormValues) => {
         setLoading(true)
 
-        console.log('test')
-
         await postProject(values)
             .then((project: Project) => {
                 addProject(project)

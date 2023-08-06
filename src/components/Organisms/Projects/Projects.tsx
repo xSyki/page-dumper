@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { Project } from '@prisma/client'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { deleteProject } from 'src/api/project'
 import useProjects from 'src/stores/projects'
@@ -19,6 +20,8 @@ interface IProjectsProps {
 
 export default function Projects(props: IProjectsProps) {
     const t = useTranslations('Index')
+
+    const router = useRouter()
 
     const [{ projects }, { setProjects, deleteProject: deleteProjectState }] =
         useProjects()
@@ -62,6 +65,11 @@ export default function Projects(props: IProjectsProps) {
                     },
                 ]}
                 rows={projects.map((project) => ({
+                    onRowClick: (project: Project) => {
+                        router.push(`/projects/${project.id}`)
+                    },
+                    className: 'cursor-pointer',
+                    rowData: project,
                     cells: [
                         {
                             content: project.name,
