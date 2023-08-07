@@ -43,13 +43,25 @@ async function POST(
 
     const uniqueUrls = [...new Set(urls)]
 
-    const pages = await prisma.page.createMany({
-        data: uniqueUrls.map((url) => ({
-            projectId,
-            url,
-        })),
-        skipDuplicates: true,
-    })
+    // const pages = await prisma.page.createMany({
+    //     data: uniqueUrls.map((url) => ({
+    //         projectId,
+    //         url,
+    //     })),
+    //     skipDuplicates: true,
+
+    // })
+
+    const pages = await prisma.$transaction(
+        uniqueUrls.map((url) =>
+            prisma.page.create({
+                data: {
+                    projectId,
+                    url,
+                },
+            })
+        )
+    )
 
     return NextResponse.json(pages, { status: 200 })
 }

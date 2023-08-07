@@ -6,11 +6,11 @@ import { Project } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { deleteProject } from 'src/api/project'
-import useProjects from 'src/stores/projects'
 
 import DeleteIcon from '@/assets/icons/trash.svg'
 import IconButton from '@/components/Atoms/IconButton/IconButton'
 import Table from '@/components/Molecules/Table/Table'
+import useProjects from '@/stores/projects'
 
 import AddProject from './AddProject/AddProject'
 

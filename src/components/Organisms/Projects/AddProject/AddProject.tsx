@@ -6,12 +6,12 @@ import { Project } from '@prisma/client'
 import { Form, Formik } from 'formik'
 import { useTranslations } from 'next-intl'
 import { postProject } from 'src/api/project'
-import useProjects from 'src/stores/projects'
 import { object, string } from 'yup'
 
 import FormikInput from '@/components/Atoms/FormikInput/FormikInput'
 import Modal from '@/components/Atoms/Modal/Modal'
 import SubmitButton from '@/components/Atoms/SubmitButton/SubmitButton'
+import useProjects from '@/stores/projects'
 
 interface IFormValues {
     name: ''

@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { postPagesSitemap } from 'src/api/pages'
 
 import LoadingDots from '@/components/Atoms/LoadingDots/LoadingDots'
+import usePages from '@/stores/pages'
 
 interface IImportSitemapPagesProps {
     projectId: number
@@ -16,12 +17,17 @@ export default function ImportSitemapPage(props: IImportSitemapPagesProps) {
 
     const t = useTranslations('Project')
 
+    const [, { addPages }] = usePages()
+
     const [loading, setLoading] = useState(false)
 
     const handleImportSitemap = () => {
         setLoading(true)
 
         postPagesSitemap(projectId)
+            .then((pages) => {
+                addPages(pages)
+            })
             .catch(() => {
                 toast.error(t('error'))
             })

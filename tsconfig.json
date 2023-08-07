@@ -17,7 +17,8 @@
             "@/styles/*": ["src/styles/*"],
             "@/assets/*": ["src/assets/*"],
             "@/emails/*": ["emails/*"],
-            "@/utils/*": ["src/utils/*"]
+            "@/utils/*": ["src/utils/*"],
+            "@/stores/*": ["src/stores/*"]
         },
         "strict": true,
         "forceConsistentCasingInFileNames": true,
