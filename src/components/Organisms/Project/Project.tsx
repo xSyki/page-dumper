@@ -5,6 +5,7 @@ import { Page, Project } from '@prisma/client'
 import { useTranslations } from 'next-intl'
 
 import Table from '@/components/Molecules/Table/Table'
+import ProjectLayout from '@/components/Templates/ProjectLayout/ProjectLayout'
 import usePages from '@/stores/pages'
 
 import ProjectHeader from './ProjectHeader/ProjectHeader'
@@ -26,35 +27,31 @@ export default function Project(props: IProjectProps) {
     }, [props.pages])
 
     return (
-        <div>
-            <ProjectHeader project={project} />
-            <Table
-                name="pages"
-                header={[
-                    {
-                        label: t('url'),
-                    },
-                    {
-                        label: t('content'),
-                    },
-                    {
-                        label: t('status'),
-                    },
-                ]}
-                rows={pages.map((page) => ({
-                    cells: [
+        <ProjectLayout projectId={project.id}>
+            <div>
+                <ProjectHeader project={project} />
+                <Table
+                    name="pages"
+                    header={[
                         {
-                            content: page.url,
+                            label: t('url'),
                         },
                         {
-                            content: page.content,
+                            label: t('status'),
                         },
-                        {
-                            content: page.status,
-                        },
-                    ],
-                }))}
-            />
-        </div>
+                    ]}
+                    rows={pages.map((page) => ({
+                        cells: [
+                            {
+                                content: page.url,
+                            },
+                            {
+                                content: page.status,
+                            },
+                        ],
+                    }))}
+                />
+            </div>
+        </ProjectLayout>
     )
 }

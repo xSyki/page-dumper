@@ -103,6 +103,13 @@
         "url": "URL",
         "content": "Content",
         "status": "Status",
-        "download_pages_content": "Download pages content"
+        "download_pages_content": "Download pages content",
+        "script": "Script",
+        "pages": "Pages"
+    },
+    "ProjectScript": {
+        "messages": "Messages",
+        "test": "Test",
+        "save": "Save"
     }
 }

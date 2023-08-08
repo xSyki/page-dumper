@@ -103,6 +103,13 @@
         "url": "URL",
         "content": "Treść",
         "status": "Status",
-        "download_pages_content": "Pobierz treść stron"
+        "download_pages_content": "Pobierz treść stron",
+        "script": "Skrypt",
+        "pages": "Strony"
+    },
+    "ProjectScript": {
+        "messages": "Wiadomości",
+        "test": "Testuj",
+        "save": "Zapisz"
     }
 }

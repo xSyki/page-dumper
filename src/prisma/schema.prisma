@@ -28,6 +28,8 @@ model Project {
   ownerId   Int
   domain    String
   pages     Page[]
+  parallelLimit Int? @default(10)
+  script    String?
 }
 
 model Page {

@@ -1,10 +1,9 @@
-import { Page } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import { getTranslator } from 'next-intl/server'
 import { IPageProps } from 'src/interfaces/page'
 import { seo } from 'src/utils'
 
-import Project from '@/components/Organisms/Project/Project'
+import ProjectScript from '@/components/Organisms/ProjectScript/ProjectScript'
 import prisma from '@/lib/prisma'
 
 export async function generateMetadata({ params: { locale } }: IPageProps) {
@@ -15,7 +14,9 @@ export async function generateMetadata({ params: { locale } }: IPageProps) {
     })
 }
 
-export default async function ProjectPage(props: IPageProps<{ id: string }>) {
+export default async function ProjectScriptPage(
+    props: IPageProps<{ id: string }>
+) {
     const { params } = props
 
     const id = Number(params.id)
@@ -26,18 +27,7 @@ export default async function ProjectPage(props: IPageProps<{ id: string }>) {
         },
     })
 
-    const pages = (await prisma.page.findMany({
-        where: {
-            projectId: id,
-        },
-        select: {
-            id: true,
-            url: true,
-            status: true,
-        },
-    })) as Page[]
+    if (!project) return notFound()
 
-    if (!project || !pages) return notFound()
-
-    return <Project project={project} pages={pages} />
+    return <ProjectScript project={project} />
 }
