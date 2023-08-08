@@ -100,6 +100,9 @@
     },
     "Project": {
         "import_sitemap": "Importuj sitemap",
-        "url": "URL"
+        "url": "URL",
+        "content": "Treść",
+        "status": "Status",
+        "download_pages_content": "Pobierz treść stron"
     }
 }

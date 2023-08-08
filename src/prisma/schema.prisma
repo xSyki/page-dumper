@@ -38,5 +38,5 @@ model Page {
   content   String?
   contentUpdatedAt DateTime?
   url       String @unique
-  status    String?
+  status    Int?
 }

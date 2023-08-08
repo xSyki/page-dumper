@@ -34,11 +34,23 @@ export default function Project(props: IProjectProps) {
                     {
                         label: t('url'),
                     },
+                    {
+                        label: t('content'),
+                    },
+                    {
+                        label: t('status'),
+                    },
                 ]}
                 rows={pages.map((page) => ({
                     cells: [
                         {
                             content: page.url,
+                        },
+                        {
+                            content: page.content,
+                        },
+                        {
+                            content: page.status,
                         },
                     ],
                 }))}
