@@ -109,7 +109,8 @@
         "script": "Skrypt",
         "pages": "Strony",
         "scrapes": "Scrapes",
-        "error": "Wystąpił błąd"
+        "error": "Wystąpił błąd",
+        "crawl_pages": "Crawluj strony"
     },
     "ProjectScript": {
         "messages": "Wiadomości",

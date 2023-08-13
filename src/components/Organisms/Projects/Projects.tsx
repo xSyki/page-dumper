@@ -26,8 +26,6 @@ export default function Projects(props: IProjectsProps) {
     const [{ projects }, { setProjects, deleteProject: deleteProjectState }] =
         useProjects()
 
-    console.log(projects)
-
     const handleDeleteProject = async (projectId: number) => {
         await deleteProject(projectId)
             .then((id) => {

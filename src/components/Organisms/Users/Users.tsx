@@ -92,9 +92,11 @@ export default function Users(props: UsersProps) {
                                 content: (
                                     <div className="flex gap-4">
                                         <IconButton
-                                            onClick={() =>
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+
                                                 handleDeleteUser(user.id)
-                                            }
+                                            }}
                                             Icon={TrashIcon}
                                         />
                                     </div>

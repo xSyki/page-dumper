@@ -79,9 +79,11 @@ export default function ScrapeScrapes(props: IScrapeScrapesProps) {
                             content: (
                                 <div className="flex">
                                     <IconButton
-                                        onClick={() =>
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+
                                             handleDeleteScrape(scrape.id)
-                                        }
+                                        }}
                                         Icon={DeleteIcon}
                                     />
                                 </div>

@@ -67,7 +67,12 @@ async function POST(
         )
     } else {
         const pagesWithContent = await prisma.page.findMany({
-            where: { projectId },
+            where: {
+                projectId,
+                content: {
+                    some: {},
+                },
+            },
             include: {
                 content: {
                     orderBy: { createdAt: 'desc' },

@@ -2,6 +2,7 @@
 
 import { Project } from '@prisma/client'
 
+import CrawlPages from './CrawlPages/CrawlPages'
 import DownloadPagesContent from './DownloadPagesContent/DownloadPagesContent'
 import ImportSitemapPage from './ImportSitemapPages/ImportSitemapPages'
 
@@ -21,6 +22,7 @@ export default function ProjectHeader(props: IProjectHeaderProps) {
             <div>
                 <ImportSitemapPage projectId={id} />
                 <DownloadPagesContent projectId={id} />
+                <CrawlPages projectId={id} />
             </div>
         </div>
     )

@@ -109,7 +109,8 @@
         "script": "Script",
         "pages": "Pages",
         "scrapes": "Scrapes",
-        "error": "Error occurred"
+        "error": "Error occurred",
+        "crawl_pages": "Crawl pages"
     },
     "ProjectScript": {
         "messages": "Messages",

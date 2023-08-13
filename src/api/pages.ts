@@ -15,3 +15,10 @@ export const postPagesContent = async (projectId: number) =>
             projectId,
         })
         .then((res) => res.data)
+
+export const postCrawlPages = async (projectId: number) =>
+    axiosApi
+        .post<Page[]>(`/pages/crawl`, {
+            projectId,
+        })
+        .then((res) => res.data)
