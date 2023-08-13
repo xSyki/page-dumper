@@ -22,6 +22,10 @@ export default function ProjectLayout(props: IProjectLayoutProps) {
                         label: t('script'),
                         url: `/projects/${projectId}/script`,
                     },
+                    {
+                        label: t('scrapes'),
+                        url: `/projects/${projectId}/scrapes`,
+                    },
                 ]}
             />
             {children}

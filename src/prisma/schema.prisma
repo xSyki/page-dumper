@@ -28,7 +28,8 @@ model Project {
   ownerId   Int
   domain    String
   pages     Page[]
-  parallelLimit Int? @default(10)
+  scrapes   Scrape[]
+  parallelLimit Int @default(10)
   script    String?
 }
 
@@ -39,6 +40,14 @@ model Page {
   projectId Int
   content   String?
   contentUpdatedAt DateTime?
-  url       String @unique
+  url       String
   status    Int?
+}
+
+model Scrape {
+  id      Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id])
+  projectId Int
+  result  String?
 }

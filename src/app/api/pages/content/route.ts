@@ -39,8 +39,6 @@ async function POST(
         10
     )
 
-    console.log(responses)
-
     const newPages = await prisma.$transaction(
         responses.map((response, i) =>
             prisma.page.update({
@@ -50,6 +48,7 @@ async function POST(
                 data: {
                     content: response.data,
                     status: response.status,
+                    contentUpdatedAt: new Date(),
                 },
             })
         )

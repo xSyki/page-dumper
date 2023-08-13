@@ -105,11 +105,18 @@
         "status": "Status",
         "download_pages_content": "Download pages content",
         "script": "Script",
-        "pages": "Pages"
+        "pages": "Pages",
+        "scrapes": "Scrapes"
     },
     "ProjectScript": {
         "messages": "Messages",
         "test": "Test",
         "save": "Save"
+    },
+    "ProjectScrapes": {
+        "results": "Results",
+        "actions": "Actions",
+        "scrape": "Scrape",
+        "update_and_scrape": "Update and scrape"
     }
 }

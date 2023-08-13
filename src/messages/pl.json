@@ -105,11 +105,18 @@
         "status": "Status",
         "download_pages_content": "Pobierz treść stron",
         "script": "Skrypt",
-        "pages": "Strony"
+        "pages": "Strony",
+        "scrapes": "Scrapes"
     },
     "ProjectScript": {
         "messages": "Wiadomości",
         "test": "Testuj",
         "save": "Zapisz"
+    },
+    "ProjectScrapes": {
+        "results": "Wyniki",
+        "actions": "Akcje",
+        "scrape": "Scrape",
+        "update_and_scrape": "Aktualizuj i scrape"
     }
 }

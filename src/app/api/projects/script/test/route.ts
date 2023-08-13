@@ -31,12 +31,11 @@ async function POST(
         return NextResponse.json({ error: 'No script' }, { status: 400 })
     }
 
-    // const scriptUri = createScript(project.script)
-
     const pages = await prisma.page.findMany({
         where: {
             projectId,
         },
+        take: 10,
     })
 
     const results: unknown[] = []
@@ -51,8 +50,6 @@ async function POST(
 
         results.push((() => eval(project.script))())
     })
-
-    console.log(results)
 
     return NextResponse.json(JSON.stringify(results, null, 4), { status: 200 })
 }
