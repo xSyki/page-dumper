@@ -69,7 +69,9 @@
         "domain": "Domena",
         "dashboard": "Panel",
         "error": "Wystąpił błąd",
-        "scrapes": "Scrapes"
+        "scrapes": "Scrapes",
+        "latest_projects": "Ostatnie projekty",
+        "latest_scrapes": "Ostatnie scrapes"
     },
     "NotFoundPage": {
         "not_found": "Strony nie znaleziono"

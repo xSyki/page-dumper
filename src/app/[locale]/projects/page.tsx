@@ -16,7 +16,7 @@ export async function generateMetadata({ params: { locale } }: IPageProps) {
     })
 }
 
-export default async function Home() {
+export default async function ProjectsPage() {
     const session = await getServerSession(authOptions)
 
     const projects = await prisma.project.findMany({

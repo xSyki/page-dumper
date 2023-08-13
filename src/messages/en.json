@@ -69,7 +69,9 @@
         "domain": "Domain",
         "dashboard": "Dashboard",
         "error": "Error occurred",
-        "scrapes": "Scrapes"
+        "scrapes": "Scrapes",
+        "latest_projects": "Latest projects",
+        "latest_scrapes": "Latest scrapes"
     },
     "NotFoundPage": {
         "not_found": "Page not found"
