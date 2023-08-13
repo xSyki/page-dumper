@@ -31,6 +31,12 @@ export default async function ProjectScrapesPage(
         where: {
             projectId: id,
         },
+        include: {
+            project: true,
+        },
+        orderBy: {
+            createdAt: 'desc',
+        },
     })
 
     if (!project) return notFound()

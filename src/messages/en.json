@@ -68,7 +68,8 @@
         "url": "URL",
         "domain": "Domain",
         "dashboard": "Dashboard",
-        "error": "Error occurred"
+        "error": "Error occurred",
+        "scrapes": "Scrapes"
     },
     "NotFoundPage": {
         "not_found": "Page not found"
@@ -124,5 +125,12 @@
         "scrape": "Scrape",
         "update_and_scrape": "Update and scrape",
         "error": "Error occurred"
+    },
+    "Scrapes": {
+        "scrapes": "Scrapes",
+        "created_at": "Created At",
+        "project_name": "Project Name",
+        "actions": "Actions",
+        "results": "Results"
     }
 }

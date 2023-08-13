@@ -10,6 +10,7 @@ import AlbumsIcon from '@/assets/icons/albums.svg'
 import AppsIcon from '@/assets/icons/apps.svg'
 import AdminIcon from '@/assets/icons/laptop.svg'
 import ProfileIcon from '@/assets/icons/person.svg'
+import ServerIcon from '@/assets/icons/server.svg'
 
 interface IAsideProps {
     user: User
@@ -40,6 +41,14 @@ export default function Aside(props: IAsideProps) {
             href: '/projects',
             icon: (
                 <AlbumsIcon className="h-6 w-6 flex-shrink-0 fill-gray-400 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
+            ),
+            roles: ['USER', 'ADMIN'],
+        },
+        {
+            label: t('scrapes'),
+            href: '/scrapes',
+            icon: (
+                <ServerIcon className="h-6 w-6 flex-shrink-0 fill-gray-400 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
             ),
             roles: ['USER', 'ADMIN'],
         },

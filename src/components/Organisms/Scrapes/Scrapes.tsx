@@ -12,20 +12,16 @@ import { deleteScrape } from 'src/api/scrape'
 import DeleteIcon from '@/assets/icons/trash.svg'
 import IconButton from '@/components/Atoms/IconButton/IconButton'
 import Table from '@/components/Molecules/Table/Table'
-import ProjectLayout from '@/components/Templates/ProjectLayout/ProjectLayout'
-import useScrapes, { ScrapeWithProject } from '@/stores/scrapes'
+import useScrapes from '@/stores/scrapes'
 
-import AddScrape from './AddScrape/AddScrape'
+type ScrapeWithProject = Scrape & { project: Project }
 
-interface IScrapeScrapesProps {
-    project: Project
-    scrapes?: ScrapeWithProject[]
+interface IScrapesProps {
+    scrapes: ScrapeWithProject[]
 }
 
-export default function ScrapeScrapes(props: IScrapeScrapesProps) {
-    const { project } = props
-
-    const t = useTranslations('ProjectScrapes')
+export default function Scrapes(props: IScrapesProps) {
+    const t = useTranslations('Scrapes')
 
     const router = useRouter()
 
@@ -43,25 +39,19 @@ export default function ScrapeScrapes(props: IScrapeScrapesProps) {
     }
 
     useEffect(() => {
-        setScrapes(props.scrapes || [])
+        setScrapes(props.scrapes)
     }, [props.scrapes])
 
-    if (!scrapes.length) {
-        return (
-            <ProjectLayout projectId={project.id}>
-                <AddScrape projectId={project.id} />
-            </ProjectLayout>
-        )
-    }
-
     return (
-        <ProjectLayout projectId={project.id}>
-            <AddScrape projectId={project.id} />
+        <div>
             <Table
                 name="scrapes"
                 header={[
                     {
                         label: t('created_at'),
+                    },
+                    {
+                        label: t('project_name'),
                     },
                     {
                         label: t('results'),
@@ -71,8 +61,10 @@ export default function ScrapeScrapes(props: IScrapeScrapesProps) {
                     },
                 ]}
                 rows={scrapes.map((scrape) => ({
-                    onRowClick: (scrape: Scrape) => {
-                        router.push(`/scrapes/${scrape.id}`)
+                    onRowClick: (scrape: ScrapeWithProject) => {
+                        router.push(
+                            `/projects/${scrape.project.id}/scrapes/${scrape.id}`
+                        )
                     },
                     className: 'cursor-pointer',
                     rowData: scrape,
@@ -81,6 +73,9 @@ export default function ScrapeScrapes(props: IScrapeScrapesProps) {
                             content: dayjs(scrape.createdAt).format(
                                 'DD-MM-YYYY HH:mm:ss'
                             ),
+                        },
+                        {
+                            content: scrape.project.name,
                         },
                         {
                             content: (scrape.result as JsonArray)?.length,
@@ -102,6 +97,6 @@ export default function ScrapeScrapes(props: IScrapeScrapesProps) {
                     ],
                 }))}
             />
-        </ProjectLayout>
+        </div>
     )
 }

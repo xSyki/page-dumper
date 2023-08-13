@@ -1,8 +1,10 @@
 import { createHook, createStore } from 'react-sweet-state'
-import { Scrape } from '@prisma/client'
+import { Project, Scrape } from '@prisma/client'
+
+export type ScrapeWithProject = Scrape & { project: Project }
 
 interface IInitialState {
-    scrapes: Scrape[]
+    scrapes: ScrapeWithProject[]
 }
 
 const initialState: IInitialState = {
@@ -13,7 +15,7 @@ const Store = createStore({
     initialState,
     actions: {
         setScrapes:
-            (scrapes: Scrape[]) =>
+            (scrapes: ScrapeWithProject[]) =>
             ({ setState }) => {
                 setState({
                     scrapes,
@@ -23,19 +25,17 @@ const Store = createStore({
             (id: number) =>
             ({ getState, setState }) => {
                 const { scrapes } = getState()
-                const newScrapes = scrapes.filter(
-                    (project) => project.id !== id
-                )
+                const newScrapes = scrapes.filter((scrape) => scrape.id !== id)
                 setState({
                     scrapes: newScrapes,
                 })
             },
         addScrape:
-            (project: Scrape) =>
+            (scrape: ScrapeWithProject) =>
             ({ getState, setState }) => {
                 const { scrapes } = getState()
                 setState({
-                    scrapes: [project, ...scrapes],
+                    scrapes: [scrape, ...scrapes],
                 })
             },
     },

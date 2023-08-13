@@ -3,30 +3,35 @@ import { getTranslator } from 'next-intl/server'
 import { IPageProps } from 'src/interfaces/page'
 import { seo } from 'src/utils'
 
-import Projects from '@/components/Organisms/Projects/Projects'
+import Scrapes from '@/components/Organisms/Scrapes/Scrapes'
 import prisma from '@/lib/prisma'
 
 import { authOptions } from '../../api/auth/[...nextauth]/route'
 
 export async function generateMetadata({ params: { locale } }: IPageProps) {
-    const t = await getTranslator(locale, 'Index')
+    const t = await getTranslator(locale, 'Scrapes')
 
     return seo({
-        title: t('projects'),
+        title: t('scrapes'),
     })
 }
 
-export default async function Home() {
+export default async function ScrapesPage() {
     const session = await getServerSession(authOptions)
 
-    const projects = await prisma.project.findMany({
+    const scrapes = await prisma.scrape.findMany({
         where: {
-            ownerId: session?.user?.id,
+            project: {
+                ownerId: session?.user?.id,
+            },
+        },
+        include: {
+            project: true,
         },
         orderBy: {
             createdAt: 'desc',
         },
     })
 
-    return <Projects projects={projects} />
+    return <Scrapes scrapes={scrapes} />
 }

@@ -68,7 +68,8 @@
         "url": "URL",
         "domain": "Domena",
         "dashboard": "Panel",
-        "error": "Wystąpił błąd"
+        "error": "Wystąpił błąd",
+        "scrapes": "Scrapes"
     },
     "NotFoundPage": {
         "not_found": "Strony nie znaleziono"
@@ -124,5 +125,12 @@
         "scrape": "Scrape",
         "update_and_scrape": "Aktualizuj i scrape",
         "error": "Wystąpił błąd"
+    },
+    "Scrapes": {
+        "scrapes": "Scrapes",
+        "created_at": "Stworzono",
+        "project_name": "Nazwa projektu",
+        "actions": "Akcje",
+        "results": "Wyniki"
     }
 }

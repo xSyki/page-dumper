@@ -7,10 +7,6 @@
         "baseUrl": ".",
         "paths": {
             "@/components/*": ["src/components/*"],
-            "@/Atoms/*": ["src/components/Atoms/*"],
-            "@/Molecules/*": ["src/components/Molecules/*"],
-            "@/Organisms/*": ["src/components/Organisms/*"],
-            "@/Templates/*": ["src/components/Templates/*"],
             "@/pages/*": ["src/app/*"],
             "@/app/*": ["src/app/*"],
             "@/lib/*": ["src/lib/*"],
@@ -36,5 +32,6 @@
             }
         ]
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
+    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
 }
