@@ -1,4 +1,4 @@
-import { Page } from '@prisma/client'
+import { Page, PageContent } from '@prisma/client'
 
 import axiosApi from './axiosApi'
 
@@ -11,7 +11,7 @@ export const postPagesSitemap = async (projectId: number) =>
 
 export const postPagesContent = async (projectId: number) =>
     axiosApi
-        .post<Page[]>(`/pages/content`, {
+        .post<PageContent[]>(`/pages/content`, {
             projectId,
         })
         .then((res) => res.data)

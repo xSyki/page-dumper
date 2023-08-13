@@ -33,7 +33,6 @@ export default async function ProjectPage(props: IPageProps<{ id: string }>) {
         select: {
             id: true,
             url: true,
-            status: true,
         },
     })) as Page[]
 

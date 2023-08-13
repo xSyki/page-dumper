@@ -67,7 +67,8 @@
         "next": "Następny",
         "url": "URL",
         "domain": "Domena",
-        "dashboard": "Panel"
+        "dashboard": "Panel",
+        "error": "Wystąpił błąd"
     },
     "NotFoundPage": {
         "not_found": "Strony nie znaleziono"
@@ -96,7 +97,8 @@
         "created_at": "Utworzono",
         "nip": "NIP",
         "address": "Adres",
-        "company": "Firma"
+        "company": "Firma",
+        "error": "Wystąpił błąd"
     },
     "Project": {
         "import_sitemap": "Importuj sitemap",
@@ -106,17 +108,20 @@
         "download_pages_content": "Pobierz treść stron",
         "script": "Skrypt",
         "pages": "Strony",
-        "scrapes": "Scrapes"
+        "scrapes": "Scrapes",
+        "error": "Wystąpił błąd"
     },
     "ProjectScript": {
         "messages": "Wiadomości",
         "test": "Testuj",
-        "save": "Zapisz"
+        "save": "Zapisz",
+        "error": "Wystąpił błąd"
     },
     "ProjectScrapes": {
         "results": "Wyniki",
         "actions": "Akcje",
         "scrape": "Scrape",
-        "update_and_scrape": "Aktualizuj i scrape"
+        "update_and_scrape": "Aktualizuj i scrape",
+        "error": "Wystąpił błąd"
     }
 }

@@ -26,6 +26,8 @@ export default function Projects(props: IProjectsProps) {
     const [{ projects }, { setProjects, deleteProject: deleteProjectState }] =
         useProjects()
 
+    console.log(projects)
+
     const handleDeleteProject = async (projectId: number) => {
         await deleteProject(projectId)
             .then((id) => {
@@ -40,7 +42,7 @@ export default function Projects(props: IProjectsProps) {
         setProjects(props.projects)
     }, [props.projects])
 
-    if (!props.projects.length) {
+    if (!projects.length) {
         return (
             <div>
                 <AddProject />
@@ -81,9 +83,11 @@ export default function Projects(props: IProjectsProps) {
                             content: (
                                 <div className="flex">
                                     <IconButton
-                                        onClick={() =>
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+
                                             handleDeleteProject(project.id)
-                                        }
+                                        }}
                                         Icon={DeleteIcon}
                                     />
                                 </div>

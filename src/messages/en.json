@@ -67,7 +67,8 @@
         "next": "Next",
         "url": "URL",
         "domain": "Domain",
-        "dashboard": "Dashboard"
+        "dashboard": "Dashboard",
+        "error": "Error occurred"
     },
     "NotFoundPage": {
         "not_found": "Page not found"
@@ -96,7 +97,8 @@
         "created_at": "Created At",
         "nip": "NIP",
         "address": "Address",
-        "company": "Company"
+        "company": "Company",
+        "error": "Error occurred"
     },
     "Project": {
         "import_sitemap": "Import sitemap",
@@ -106,17 +108,20 @@
         "download_pages_content": "Download pages content",
         "script": "Script",
         "pages": "Pages",
-        "scrapes": "Scrapes"
+        "scrapes": "Scrapes",
+        "error": "Error occurred"
     },
     "ProjectScript": {
         "messages": "Messages",
         "test": "Test",
-        "save": "Save"
+        "save": "Save",
+        "error": "Error occurred"
     },
     "ProjectScrapes": {
         "results": "Results",
         "actions": "Actions",
         "scrape": "Scrape",
-        "update_and_scrape": "Update and scrape"
+        "update_and_scrape": "Update and scrape",
+        "error": "Error occurred"
     }
 }

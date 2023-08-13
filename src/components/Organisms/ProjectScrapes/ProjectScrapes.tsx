@@ -73,7 +73,7 @@ export default function ScrapeScrapes(props: IScrapeScrapesProps) {
                     rowData: scrape,
                     cells: [
                         {
-                            content: scrape.result,
+                            content: JSON.stringify(scrape.result),
                         },
                         {
                             content: (

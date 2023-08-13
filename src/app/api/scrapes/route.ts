@@ -1,4 +1,5 @@
-import { Page } from '@prisma/client'
+import { Page, PageContent } from '@prisma/client'
+import { JsonArray } from '@prisma/client/runtime/library'
 import axios from 'axios'
 import { load } from 'cheerio'
 import { NextRequest, NextResponse } from 'next/server'
@@ -35,59 +36,73 @@ async function POST(
         return NextResponse.json({ error: 'No script' }, { status: 400 })
     }
 
-    let pages: Page[]
+    let pageContents: (PageContent & { page: Page })[]
+
+    const pages = await prisma.page.findMany({
+        where: {
+            projectId,
+        },
+    })
 
     if (update) {
-        const oldPages = await prisma.page.findMany({
-            where: {
-                projectId,
-            },
-        })
-
         const responses = await parallel(
-            oldPages.map((page) => axios.get<string>(page.url)),
+            pages.map((page) => axios.get<string>(page.url)),
             project.parallelLimit
         )
 
-        pages = await prisma.$transaction(
+        pageContents = await prisma.$transaction(
             responses.map((response, i) =>
-                prisma.page.update({
-                    where: {
-                        id: oldPages[i].id,
-                    },
+                prisma.pageContent.create({
                     data: {
+                        pageId: pages[i].id,
                         content: response.data,
                         status: response.status,
-                        contentUpdatedAt: new Date(),
+                        projectId: project.id,
+                    },
+                    include: {
+                        page: true,
                     },
                 })
             )
         )
     } else {
-        pages = await prisma.page.findMany({
-            where: {
-                projectId,
+        const pagesWithContent = await prisma.page.findMany({
+            where: { projectId },
+            include: {
+                content: {
+                    orderBy: { createdAt: 'desc' },
+                    take: 1,
+                },
             },
         })
+
+        pageContents = pagesWithContent.map((page) => ({
+            ...page.content[0],
+            page,
+        }))
     }
 
-    const results: unknown[] = []
+    const result: JsonArray = []
 
-    pages.map((page) => {
-        if (!page.content || !project.script) {
+    pageContents.map((pageContent) => {
+        if (!pageContent.content || !project.script) {
             return
         }
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const $ = load(page.content)
+        const $ = load(pageContent.content)
 
-        results.push((() => eval(project.script))())
+        result.push({
+            ...(() => eval(project.script))(),
+            pageId: pageContent.page.id,
+            url: pageContent.page.url,
+        })
     })
 
     const scrape = await prisma.scrape.create({
         data: {
             projectId,
-            result: JSON.stringify(results, null, 4),
+            result: result.filter((result) => result),
         },
     })
 

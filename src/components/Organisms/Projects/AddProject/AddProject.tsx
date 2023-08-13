@@ -41,6 +41,7 @@ export default function AddProject() {
 
         await postProject(values)
             .then((project: Project) => {
+                console.log(project)
                 addProject(project)
             })
             .catch(() => {

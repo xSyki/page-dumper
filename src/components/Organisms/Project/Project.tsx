@@ -36,17 +36,11 @@ export default function Project(props: IProjectProps) {
                         {
                             label: t('url'),
                         },
-                        {
-                            label: t('status'),
-                        },
                     ]}
                     rows={pages.map((page) => ({
                         cells: [
                             {
                                 content: page.url,
-                            },
-                            {
-                                content: page.status,
                             },
                         ],
                     }))}

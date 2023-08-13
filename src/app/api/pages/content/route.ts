@@ -36,25 +36,26 @@ async function POST(
 
     const responses = await parallel(
         pages.map((page) => axios.get<string>(page.url)),
-        10
+        project.parallelLimit
     )
 
-    const newPages = await prisma.$transaction(
+    const pageContents = await prisma.$transaction(
         responses.map((response, i) =>
-            prisma.page.update({
-                where: {
-                    id: pages[i].id,
-                },
+            prisma.pageContent.create({
                 data: {
+                    pageId: pages[i].id,
                     content: response.data,
                     status: response.status,
-                    contentUpdatedAt: new Date(),
+                    projectId: project.id,
+                },
+                include: {
+                    page: true,
                 },
             })
         )
     )
 
-    return NextResponse.json(newPages, { status: 200 })
+    return NextResponse.json(pageContents, { status: 200 })
 }
 
 const postHandler = withValidation(withProtect(POST), {

@@ -35,21 +35,29 @@ async function POST(
         where: {
             projectId,
         },
+        include: {
+            content: {
+                orderBy: { createdAt: 'desc' },
+                take: 1,
+            },
+        },
         take: 10,
     })
 
-    const results: unknown[] = []
+    let results: unknown[] = []
 
     pages.map((page) => {
-        if (!page.content || !project.script) {
+        if (!page.content[0] || !project.script) {
             return
         }
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const $ = load(page.content)
+        const $ = load(page.content[0].content)
 
         results.push((() => eval(project.script))())
     })
+
+    results = results.filter((result) => result)
 
     return NextResponse.json(JSON.stringify(results, null, 4), { status: 200 })
 }

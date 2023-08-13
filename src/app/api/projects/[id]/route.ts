@@ -20,6 +20,18 @@ async function DELETE(
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    await prisma.scrape.deleteMany({
+        where: {
+            projectId: id,
+        },
+    })
+
+    await prisma.pageContent.deleteMany({
+        where: {
+            projectId: id,
+        },
+    })
+
     await prisma.page.deleteMany({
         where: {
             projectId: id,
