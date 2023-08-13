@@ -1,5 +1,5 @@
 import { Page, PageContent } from '@prisma/client'
-import { JsonArray } from '@prisma/client/runtime/library'
+import { JsonValue } from '@prisma/client/runtime/library'
 import axios from 'axios'
 import { load } from 'cheerio'
 import { NextRequest, NextResponse } from 'next/server'
@@ -87,7 +87,7 @@ async function POST(
         }))
     }
 
-    const result: JsonArray = []
+    const result: (JsonValue & { pageId: number; url: string })[] = []
 
     pageContents.map((pageContent) => {
         if (!pageContent.content || !project.script) {
@@ -107,7 +107,7 @@ async function POST(
     const scrape = await prisma.scrape.create({
         data: {
             projectId,
-            result: result.filter((result) => result),
+            result: result.filter((result) => Object.keys(result).length > 2),
         },
     })
 

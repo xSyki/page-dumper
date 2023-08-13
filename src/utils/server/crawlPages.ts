@@ -33,13 +33,15 @@ export async function crawlPages(
                 return
             }
 
-            if (href.startsWith('/')) {
-                urls.push(`${project.domain}${href}`)
+            const parsedHref = href.replace(/#.*$/, '')
+
+            if (parsedHref.startsWith('/')) {
+                urls.push(`${project.domain}${parsedHref}`)
                 return
             }
 
-            if (href.startsWith(project.domain)) {
-                urls.push(href)
+            if (parsedHref.startsWith(project.domain)) {
+                urls.push(parsedHref)
                 return
             }
         })
