@@ -71,7 +71,10 @@
         "error": "Wystąpił błąd",
         "scrapes": "Scrapes",
         "latest_projects": "Ostatnie projekty",
-        "latest_scrapes": "Ostatnie scrapes"
+        "latest_scrapes": "Ostatnie scrapes",
+        "results": "Wyniki",
+        "project_name": "Nazwa projektu",
+        "created_at": "Stworzono"
     },
     "NotFoundPage": {
         "not_found": "Strony nie znaleziono"

@@ -71,7 +71,10 @@
         "error": "Error occurred",
         "scrapes": "Scrapes",
         "latest_projects": "Latest projects",
-        "latest_scrapes": "Latest scrapes"
+        "latest_scrapes": "Latest scrapes",
+        "results": "Results",
+        "project_name": "Project Name",
+        "created_at": "Created At"
     },
     "NotFoundPage": {
         "not_found": "Page not found"
