@@ -18,7 +18,13 @@ interface IFormValues {
     password: string
 }
 
-export default function RegisterForm() {
+interface IRegisterFormProps {
+    canRegister: boolean
+}
+
+export default function RegisterForm(props: IRegisterFormProps) {
+    const { canRegister } = props
+
     const t = useTranslations('Index')
 
     const router = useRouter()
@@ -82,7 +88,7 @@ export default function RegisterForm() {
                     <SubmitButton
                         loading={loading}
                         label={t('sign_up')}
-                        disabled={loading}
+                        disabled={loading || !canRegister}
                     />
                 </Form>
             </Formik>

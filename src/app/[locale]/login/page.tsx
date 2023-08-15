@@ -1,9 +1,9 @@
-import { useTranslations } from 'next-intl'
 import { getTranslator } from 'next-intl/server'
 import { IPageProps } from 'src/interfaces/page'
 import { seo } from 'src/utils'
 
 import LoginForm from '@/components/Organisms/LoginForm/LoginForm'
+import prisma from '@/lib/prisma'
 
 export async function generateMetadata({ params: { locale } }: IPageProps) {
     const t = await getTranslator(locale, 'Index')
@@ -13,8 +13,12 @@ export async function generateMetadata({ params: { locale } }: IPageProps) {
     })
 }
 
-export default function Login() {
-    const t = useTranslations('Index')
+export default async function Login(props: IPageProps) {
+    const { locale } = props.params
+
+    const usersCount = await prisma.user.count()
+
+    const t = await getTranslator(locale, 'Index')
 
     return (
         <section className="h-full bg-gray-50 dark:bg-gray-900">
@@ -24,7 +28,7 @@ export default function Login() {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                             {t('sign_in_to_your_account')}
                         </h1>
-                        <LoginForm />
+                        <LoginForm canRegister={!usersCount} />
                     </div>
                 </div>
             </div>

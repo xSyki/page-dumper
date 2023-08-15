@@ -15,7 +15,13 @@ interface IFormValues {
     email: string
 }
 
-export default function ForgotPasswordForm() {
+interface IForgotPasswordFormProps {
+    canRegister: boolean
+}
+
+export default function ForgotPasswordForm(props: IForgotPasswordFormProps) {
+    const { canRegister } = props
+
     const t = useTranslations('Index')
 
     const [loading, setLoading] = useState(false)
@@ -67,15 +73,17 @@ export default function ForgotPasswordForm() {
                                     />
                                 </Form>
                             </Formik>
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                {t('dont_have_an_account')}{' '}
-                                <Link
-                                    href="/register"
-                                    className="dark:text-primary-500 font-medium text-blue-500 hover:underline"
-                                >
-                                    {t('sign_up')}
-                                </Link>
-                            </p>
+                            {canRegister && (
+                                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    {t('dont_have_an_account')}{' '}
+                                    <Link
+                                        href="/register"
+                                        className="dark:text-primary-500 font-medium text-blue-500 hover:underline"
+                                    >
+                                        {t('sign_up')}
+                                    </Link>
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>

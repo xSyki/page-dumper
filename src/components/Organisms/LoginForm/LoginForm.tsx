@@ -16,7 +16,13 @@ interface IFormValues {
     password: string
 }
 
-export default function LoginForm() {
+interface ILoginFormProps {
+    canRegister: boolean
+}
+
+export default function LoginForm(props: ILoginFormProps) {
+    const { canRegister } = props
+
     const t = useTranslations('Index')
 
     const [loading, setLoading] = useState(false)
@@ -76,15 +82,17 @@ export default function LoginForm() {
                     {t('forgot_password')}
                 </Link>
             </div>
-            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                {t('dont_have_an_account')}{' '}
-                <Link
-                    href="/register"
-                    className="dark:text-primary-500 font-medium text-blue-500 hover:underline"
-                >
-                    {t('sign_up')}
-                </Link>
-            </p>
+            {canRegister && (
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    {t('dont_have_an_account')}{' '}
+                    <Link
+                        href="/register"
+                        className="dark:text-primary-500 font-medium text-blue-500 hover:underline"
+                    >
+                        {t('sign_up')}
+                    </Link>
+                </p>
+            )}
         </section>
     )
 }

@@ -3,6 +3,7 @@ import { IPageProps } from 'src/interfaces/page'
 import { seo } from 'src/utils'
 
 import ForgotPasswordForm from '@/components/Organisms/ForgotPasswordForm/ForgotPasswordForm'
+import prisma from '@/lib/prisma'
 
 export async function generateMetadata({ params: { locale } }: IPageProps) {
     const t = await getTranslator(locale, 'Index')
@@ -12,6 +13,8 @@ export async function generateMetadata({ params: { locale } }: IPageProps) {
     })
 }
 
-export default function ForgotPasswordPage() {
-    return <ForgotPasswordForm />
+export default async function ForgotPasswordPage() {
+    const usersCount = await prisma.user.count()
+
+    return <ForgotPasswordForm canRegister={!usersCount} />
 }

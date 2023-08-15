@@ -1,9 +1,9 @@
-import { useTranslations } from 'next-intl'
 import { getTranslator } from 'next-intl/server'
 import { IPageProps } from 'src/interfaces/page'
 import { seo } from 'src/utils'
 
 import RegisterForm from '@/components/Organisms/RegisterForm/RegisterForm'
+import prisma from '@/lib/prisma'
 
 export async function generateMetadata({ params: { locale } }: IPageProps) {
     const t = await getTranslator(locale, 'Index')
@@ -13,8 +13,12 @@ export async function generateMetadata({ params: { locale } }: IPageProps) {
     })
 }
 
-export default function Login() {
-    const t = useTranslations('Index')
+export default async function RegisterPage(props: IPageProps) {
+    const { locale } = props.params
+
+    const usersCount = await prisma.user.count()
+
+    const t = await getTranslator(locale, 'Index')
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
@@ -27,7 +31,7 @@ export default function Login() {
                         <p className="text-sm text-gray-500">
                             {t('sign_up_to_your_account')}
                         </p>
-                        <RegisterForm />
+                        <RegisterForm canRegister={!usersCount} />
                     </div>
                 </div>
             </div>
