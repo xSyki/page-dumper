@@ -1,8 +1,7 @@
 {
     "name": "page-dumper",
-    "private": true,
     "version": "1.0.0",
-    "license": "UNLICENSED",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/xSyki/page-dumper.git"
