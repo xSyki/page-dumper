@@ -1,4 +1,4 @@
-import { Scrape } from '@prisma/client'
+import { ScrapeWithProject } from '@/stores/scrapes'
 
 import axiosApi from './axiosApi'
 
@@ -7,5 +7,5 @@ export const deleteScrape = async (id: number) =>
 
 export const postScrape = async (projectId: number, update: boolean) =>
     axiosApi
-        .post<Scrape>(`/scrapes`, { projectId, update })
+        .post<ScrapeWithProject>(`/scrapes`, { projectId, update })
         .then((res) => res.data)
