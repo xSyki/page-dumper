@@ -38,9 +38,7 @@ export default function LatestScrapes(props: ILatestScrapesProps) {
                 ]}
                 rows={scrapes.map((scrape) => ({
                     onRowClick: (scrape: ScrapeWithProject) => {
-                        router.push(
-                            `/projects/${scrape.project.id}/scrapes/${scrape.id}`
-                        )
+                        router.push(`/scrapes/${scrape.id}`)
                     },
                     className: 'cursor-pointer',
                     rowData: scrape,

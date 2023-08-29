@@ -129,7 +129,8 @@
         "actions": "Actions",
         "scrape": "Scrape",
         "update_and_scrape": "Update and scrape",
-        "error": "Error occurred"
+        "error": "Error occurred",
+        "created_at": "Created At"
     },
     "Scrapes": {
         "scrapes": "Scrapes",

@@ -129,7 +129,8 @@
         "actions": "Akcje",
         "scrape": "Scrape",
         "update_and_scrape": "Aktualizuj i scrape",
-        "error": "Wystąpił błąd"
+        "error": "Wystąpił błąd",
+        "created_at": "Stworzono"
     },
     "Scrapes": {
         "scrapes": "Scrapes",

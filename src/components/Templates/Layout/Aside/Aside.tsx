@@ -71,7 +71,7 @@ export default function Aside(props: IAsideProps) {
     ]
 
     const isHrefActive = (href: string) =>
-        href === '/' ? pathname === '/' : pathname.includes(href)
+        href === '/' ? pathname === '/' : pathname.startsWith(href)
 
     return (
         <aside

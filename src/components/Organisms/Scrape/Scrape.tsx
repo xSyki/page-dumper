@@ -20,32 +20,30 @@ export default function Scrape(props: IScrapeProps) {
     const { scrape } = props
 
     return (
-        <ProjectLayout projectId={scrape.project.id}>
-            <main className="flex flex-col gap-4">
-                <div className="flex items-center justify-end gap-1">
-                    <DownloadJSON content={scrape.result as BlobPart} />
-                    <DownloadCSV content={scrape.result} />
-                </div>
-                <MonacoEditor
-                    className="flex-1"
-                    height="36rem"
-                    width="100%"
-                    defaultLanguage="json"
-                    value={JSON.stringify(scrape.result, null, 4)}
-                    theme="vs-dark"
-                    options={{
-                        minimap: {
-                            enabled: false,
-                        },
-                        wordWrap: 'wordWrapColumn',
-                        wordWrapColumn: 80,
-                        fontSize: 14,
-                        domReadOnly: true,
-                        readOnly: true,
-                        scrollBeyondLastLine: false,
-                    }}
-                />
-            </main>
-        </ProjectLayout>
+        <main className="flex flex-col gap-4">
+            <div className="flex items-center justify-end gap-1">
+                <DownloadJSON content={scrape.result as BlobPart} />
+                <DownloadCSV content={scrape.result} />
+            </div>
+            <MonacoEditor
+                className="flex-1"
+                height="36rem"
+                width="100%"
+                defaultLanguage="json"
+                value={JSON.stringify(scrape.result, null, 4)}
+                theme="vs-dark"
+                options={{
+                    minimap: {
+                        enabled: false,
+                    },
+                    wordWrap: 'wordWrapColumn',
+                    wordWrapColumn: 80,
+                    fontSize: 14,
+                    domReadOnly: true,
+                    readOnly: true,
+                    scrollBeyondLastLine: false,
+                }}
+            />
+        </main>
     )
 }
