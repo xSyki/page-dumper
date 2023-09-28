@@ -4,6 +4,7 @@ import { IPageProps } from 'src/interfaces/page'
 import { seo } from 'src/utils'
 
 import Home from '@/components/Organisms/Home/Home'
+import prisma from '@/lib/prisma'
 
 import { authOptions } from '../api/auth/[...nextauth]/route'
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params: { locale } }: IPageProps) {
 export default async function HomePage() {
     const session = await getServerSession(authOptions)
 
-    const latestProjects = await prisma?.project.findMany({
+    const latestProjects = await prisma.project.findMany({
         take: 5,
         orderBy: {
             createdAt: 'desc',
@@ -28,7 +29,7 @@ export default async function HomePage() {
         },
     })
 
-    const latestScrapes = await prisma?.scrape.findMany({
+    const latestScrapes = await prisma.scrape.findMany({
         take: 5,
         where: {
             project: {

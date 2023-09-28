@@ -36,10 +36,6 @@ const nextConfig = {
         ignoreBuildErrors: true,
     },
     swcMinify: true,
-    experimental: {
-        serverActions: true,
-        appDir: true,
-    },
     trailingSlash: false,
 }
 

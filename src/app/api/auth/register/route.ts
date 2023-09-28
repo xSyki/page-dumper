@@ -4,8 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { object, string } from 'yup'
 
 import { IMiddlewares, withValidation } from '@/lib/middlewares'
-
-import prisma from '../../../../lib/prisma'
+import prisma from '@/lib/prisma'
 
 async function POST(
     req: NextRequest,
