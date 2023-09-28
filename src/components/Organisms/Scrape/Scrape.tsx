@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic'
 
 import DownloadCSV from '@/components/Atoms/DownloadCSV/DownloadCSV'
 import DownloadJSON from '@/components/Atoms/DownloadJSON/DownloadJSON'
-import ProjectLayout from '@/components/Templates/ProjectLayout/ProjectLayout'
 import { ScrapeWithProject } from '@/stores/scrapes'
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), {

@@ -27,6 +27,11 @@ async function POST(
             name: body.name,
             domain,
             ownerId: token.userId,
+            pages: {
+                create: {
+                    url: body.url,
+                },
+            },
         },
     })
 
