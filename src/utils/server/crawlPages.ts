@@ -2,6 +2,9 @@ import { Project } from '@prisma/client'
 import axios from 'axios'
 import { load } from 'cheerio'
 
+import isValidUrl from '../isValidUrl'
+import { pureUrl } from '../pureUrl'
+
 import { parallel } from './parallel'
 
 interface ICrawlPage {
@@ -36,12 +39,26 @@ export async function crawlPages(
             const parsedHref = href.replace(/#.*$/, '')
 
             if (parsedHref.startsWith('/')) {
-                urls.push(`${project.domain}${parsedHref}`)
+                const url = `${project.domain}${parsedHref}`
+
+                if (!isValidUrl(url)) {
+                    return
+                }
+
+                urls.push(pureUrl(url))
+
                 return
             }
 
             if (parsedHref.startsWith(project.domain)) {
                 urls.push(parsedHref)
+
+                if (!isValidUrl(parsedHref)) {
+                    return
+                }
+
+                urls.push(pureUrl(parsedHref))
+
                 return
             }
         })
@@ -61,7 +78,10 @@ export async function crawlPages(
     )
 
     const newPageContent: ICrawlPage[] = responses.map((response, i) => ({
-        content: response.data,
+        content:
+            response.headers['content-type'] === 'text/html; charset=utf-8'
+                ? response.data
+                : '',
         status: response.status,
         page: {
             url: uniqueUrls[i],

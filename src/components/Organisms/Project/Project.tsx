@@ -35,6 +35,9 @@ export default function Project(props: IProjectProps) {
                     name="pages"
                     header={[
                         {
+                            label: t('index'),
+                        },
+                        {
                             label: t('url'),
                         },
                         {
@@ -44,8 +47,11 @@ export default function Project(props: IProjectProps) {
                             label: t('content'),
                         },
                     ]}
-                    rows={pages.map((page) => ({
+                    rows={pages.map((page, index) => ({
                         cells: [
+                            {
+                                content: index + 1,
+                            },
                             {
                                 content: page.url,
                             },

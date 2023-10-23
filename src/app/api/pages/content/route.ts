@@ -35,7 +35,16 @@ async function POST(
     })
 
     const responses = await parallel(
-        pages.map((page) => axios.get<string>(page.url)),
+        pages.map((page) =>
+            axios.get<string>(page.url, {
+                headers: {
+                    'User-Agent':
+                        'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+                    Accept: 'text/html',
+                    'Content-Type': 'text/html; charset=utf-8',
+                },
+            })
+        ),
         project.parallelLimit
     )
 
@@ -44,7 +53,11 @@ async function POST(
             prisma.pageContent.create({
                 data: {
                     pageId: pages[i].id,
-                    content: response.data,
+                    content:
+                        response.headers['content-type'] ===
+                        'text/html; charset=utf-8'
+                            ? response.data
+                            : '',
                     status: response.status,
                     projectId: project.id,
                 },

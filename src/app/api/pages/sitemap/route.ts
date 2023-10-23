@@ -4,6 +4,8 @@ import { number, object } from 'yup'
 
 import { IMiddlewares, withProtect, withValidation } from '@/lib/middlewares'
 import prisma from '@/lib/prisma'
+import isValidUrl from '@/utils/isValidUrl'
+import { pureUrl } from '@/utils/pureUrl'
 import findSitemaps from '@/utils/server/findSitemaps'
 
 async function POST(
@@ -22,6 +24,15 @@ async function POST(
         where: {
             id: projectId,
         },
+        select: {
+            ownerId: true,
+            domain: true,
+            pages: {
+                select: {
+                    url: true,
+                },
+            },
+        },
     })
 
     if (!project || project.ownerId !== token.userId) {
@@ -39,9 +50,16 @@ async function POST(
 
     const sitemaps = await Promise.all(sitemapsPromise)
 
-    const urls = sitemaps.map((sitemap) => sitemap.sites).flat(1)
+    const urls = sitemaps
+        .map((sitemap) => sitemap.sites)
+        .flat(1)
+        .filter((url) => url.startsWith(project.domain))
+        .filter((url) => isValidUrl(url))
+        .map((url) => pureUrl(url))
 
-    const uniqueUrls = [...new Set(urls)]
+    const uniqueUrls = [...new Set(urls)].filter(
+        (url) => !project.pages?.map((page) => page.url).includes(url)
+    )
 
     const pages = await prisma.$transaction(
         uniqueUrls.map((url) =>

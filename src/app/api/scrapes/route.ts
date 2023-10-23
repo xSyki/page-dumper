@@ -55,7 +55,11 @@ async function POST(
                 prisma.pageContent.create({
                     data: {
                         pageId: pages[i].id,
-                        content: response.data,
+                        content:
+                            response.headers['content-type'] ===
+                            'text/html; charset=utf-8'
+                                ? response.data
+                                : '',
                         status: response.status,
                         projectId: project.id,
                     },
