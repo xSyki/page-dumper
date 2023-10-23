@@ -1,8 +1,15 @@
 import { createHook, createStore } from 'react-sweet-state'
-import { Page } from '@prisma/client'
+
+export interface IPagePreview {
+    id: number
+    url: string
+    status?: number | null
+    content?: boolean | null
+    createdAt?: Date | null
+}
 
 interface IInitialState {
-    pages: Page[]
+    pages: IPagePreview[]
 }
 
 const initialState: IInitialState = {
@@ -13,7 +20,7 @@ const Store = createStore({
     initialState,
     actions: {
         setPages:
-            (pages: Page[]) =>
+            (pages: IPagePreview[]) =>
             ({ setState }) => {
                 setState({
                     pages,
@@ -29,7 +36,7 @@ const Store = createStore({
                 })
             },
         addPages:
-            (newPages: Page[]) =>
+            (newPages: IPagePreview[]) =>
             ({ getState, setState }) => {
                 const { pages } = getState()
                 setState({

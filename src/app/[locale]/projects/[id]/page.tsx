@@ -1,4 +1,3 @@
-import { Page } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import { getTranslator } from 'next-intl/server'
 import { IPageProps } from 'src/interfaces/page'
@@ -26,17 +25,38 @@ export default async function ProjectPage(props: IPageProps<{ id: string }>) {
         },
     })
 
-    const pages = (await prisma.page.findMany({
+    const pages = await prisma.page.findMany({
         where: {
             projectId: id,
         },
         select: {
             id: true,
             url: true,
+            content: {
+                select: {
+                    status: true,
+                    content: true,
+                    createdAt: true,
+                },
+                orderBy: {
+                    createdAt: 'desc',
+                },
+                take: 1,
+            },
         },
-    })) as Page[]
+    })
 
     if (!project || !pages) return notFound()
 
-    return <Project project={project} pages={pages} />
+    return (
+        <Project
+            project={project}
+            pages={pages.map((page) => ({
+                ...page,
+                status: page.content[0]?.status,
+                content: !!page.content[0]?.content,
+                createdAt: page.content[0]?.createdAt,
+            }))}
+        />
+    )
 }
