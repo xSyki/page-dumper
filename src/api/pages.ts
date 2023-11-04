@@ -22,3 +22,6 @@ export const postCrawlPages = async (projectId: number) =>
             projectId,
         })
         .then((res) => res.data)
+
+export const deletePage = async (pageId: number) =>
+    axiosApi.delete(`/pages/${pageId}`).then((res) => res.data)

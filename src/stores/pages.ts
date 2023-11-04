@@ -1,4 +1,5 @@
 import { createHook, createStore } from 'react-sweet-state'
+import { deletePage } from 'src/api/pages'
 
 export interface IPagePreview {
     id: number
@@ -28,9 +29,13 @@ const Store = createStore({
             },
         deletePage:
             (id: number) =>
-            ({ getState, setState }) => {
+            async ({ getState, setState }) => {
                 const { pages } = getState()
+
+                await deletePage(id)
+
                 const newPages = pages.filter((project) => project.id !== id)
+
                 setState({
                     pages: newPages,
                 })

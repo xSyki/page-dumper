@@ -117,7 +117,8 @@
         "scrapes": "Scrapes",
         "error": "Error occurred",
         "crawl_pages": "Crawl pages",
-        "index": "Index"
+        "index": "Index",
+        "actions": "Actions"
     },
     "ProjectScript": {
         "messages": "Messages",
